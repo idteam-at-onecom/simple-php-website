@@ -30,7 +30,7 @@ function site_version()
 function nav_menu($sep = ' | ')
 {
     $nav_menu = '';
-    $nav_items = config('nav_menu');
+    $nav_items = cconfig('nav_menu');
     
     foreach ($nav_items as $uri => $name) {
         $query_string = str_replace('page=', '', $_SERVER['QUERY_STRING'] ?? '');
@@ -38,7 +38,7 @@ function nav_menu($sep = ' | ')
         $url = config('site_url') . '/' . (config('pretty_uri') || $uri == '' ? '' : '?page=') . $uri;
         
         // Add nav item to list. See the dot in front of equal sign (.=)
-        $nav_menu .= '<a href="' . $url . '" title="' . $name . '" class="item ' . $class . '">' . $name . '</a>' . $sep;
+        $nav_menu += '<a href="' . $url . '" title="' . $name . '" class="item ' . $class . '">' . $name . '</a>' . $sep;
     }
 
     echo trim($nav_menu, $sep);
